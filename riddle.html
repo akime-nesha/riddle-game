@@ -38,16 +38,33 @@
     </div>
 
     <script>
-      const correctAnswer = "piano";  // Correct answer for the riddle
+      const riddles = [
+        { question: "What has keys but can't open locks?", answer: "piano" },
+        { question: "I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?", answer: "echo" },
+        { question: "The more of this there is, the less you see. What is it?", answer: "darkness" }
+      ];
+
+      let currentRiddleIndex = 0;
       let attempts = 3;
 
       // Function to check the player's answer
       function checkAnswer() {
         const userAnswer = document.getElementById('answer-input').value.trim().toLowerCase();
 
-        if (userAnswer === correctAnswer.toLowerCase()) {
+        if (userAnswer === riddles[currentRiddleIndex].answer.toLowerCase()) {
           alert("Correct! You solved the riddle.");
-          resetGame();
+          currentRiddleIndex++;
+
+          if (currentRiddleIndex < riddles.length) {
+            // Show the next riddle
+            document.getElementById('riddle-box').textContent = riddles[currentRiddleIndex].question;
+            document.getElementById('answer-input').value = '';  // Clear input field
+            attempts = 3;  // Reset attempts for the new riddle
+            document.getElementById('attempts-left').textContent = "You have 3 attempts remaining.";
+          } else {
+            alert("Congrats! You've solved all the riddles.");
+            resetGame();
+          }
         } else {
           attempts--;
           if (attempts > 0) {
@@ -61,8 +78,10 @@
 
       // Function to reset the game after success or failure
       function resetGame() {
+        currentRiddleIndex = 0;
         attempts = 3;
         document.getElementById('answer-input').value = '';
+        document.getElementById('riddle-box').textContent = riddles[currentRiddleIndex].question;
         document.getElementById('attempts-left').textContent = "You have 3 attempts remaining.";
       }
     </script>
