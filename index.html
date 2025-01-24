@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Generate QR Code for Riddle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      h2 {
+        color: black;
+        text-align: center;
+      }
+      .qr-code-generator {
+        text-align: center;
+        margin-top: 20px;
+      }
+      #qr-code-image {
+        margin-top: 20px;
+        max-width: 100%;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+  </head>
+  <body>
+    <h2>QR Code Generator for Riddle</h2>
+    <div class="qr-code-generator">
+      <button onclick="generateQRCode()">Generate QR Code</button><br />
+      <img id="qr-code-image" alt="QR code">
+    </div>
+
+    <script>
+      // Update this URL to the full live URL of your riddle page
+      const riddlePageURL = "https://yourwebsite.com/riddle.html";  // Full URL to the riddle page
+
+      // Function to generate QR code with a link to the riddle page
+      function generateQRCode() {
+        const options = {
+          value: riddlePageURL,  // QR code should point to the live riddle page URL
+          size: 400,  // Size of the QR code
+          level: 'H'  // Error correction level
+        };
+
+        const qrCode = new QRious(options);
+        const qrCodeImage = qrCode.toDataURL();
+        document.getElementById('qr-code-image').src = qrCodeImage;
+      }
+    </script>
+  </body>
+</html>

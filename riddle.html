@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Riddle Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      h2 {
+        color: black;
+        text-align: center;
+      }
+      .riddle-container {
+        text-align: center;
+        margin-top: 20px;
+      }
+      .riddle-box {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      .attempts {
+        color: red;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Riddle Game</h2>
+
+    <div class="riddle-container">
+      <!-- Display Riddle -->
+      <div class="riddle-box" id="riddle-box">What has keys but can't open locks?</div>
+
+      <!-- User Input Section -->
+      <input type="text" id="answer-input" placeholder="Your answer">
+      <button onclick="checkAnswer()">Submit Answer</button>
+      <div class="attempts" id="attempts-left">You have 3 attempts remaining.</div>
+    </div>
+
+    <script>
+      const correctAnswer = "piano";  // Correct answer for the riddle
+      let attempts = 3;
+
+      // Function to check the player's answer
+      function checkAnswer() {
+        const userAnswer = document.getElementById('answer-input').value.trim().toLowerCase();
+
+        if (userAnswer === correctAnswer.toLowerCase()) {
+          alert("Correct! You solved the riddle.");
+          resetGame();
+        } else {
+          attempts--;
+          if (attempts > 0) {
+            document.getElementById('attempts-left').textContent = `Wrong answer! You have ${attempts} attempts remaining.`;
+          } else {
+            alert("Oops! Better luck next time.");
+            resetGame();
+          }
+        }
+      }
+
+      // Function to reset the game after success or failure
+      function resetGame() {
+        attempts = 3;
+        document.getElementById('answer-input').value = '';
+        document.getElementById('attempts-left').textContent = "You have 3 attempts remaining.";
+      }
+    </script>
+  </body>
+</html>
