@@ -33,7 +33,7 @@
       }
 
       .shake {
-        animation: shake 0.5s ease-in-out;
+        animation: shake 0.10s ease-in-out;
       }
 
       /* Green effect for correct answer */
@@ -43,7 +43,7 @@
       }
 
       .green {
-        animation: greenEffect 0.5s ease-in-out;
+        animation: greenEffect 0.10s ease-in-out;
       }
     </style>
   </head>
@@ -89,7 +89,7 @@
               attempts = 3;  // Reset attempts for the new riddle
               document.getElementById('attempts-left').textContent = "You have 3 attempts remaining.";
             } else {
-              alert("Congrats! You've solved all the riddles.");
+              alert("Congrats! You've solved all the riddles. You're not that green after all");
               resetGame();
             }
           }, 500); // Wait for the green effect to finish
